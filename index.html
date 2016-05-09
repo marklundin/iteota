@@ -13,7 +13,7 @@
             }
 
 			body {
-                background: -webkit-radial-gradient(50% 50%, closest-corner, #21313a, #0e1518);
+                background: -webkit-radial-gradient(50% 50%, closest-corner, #203037, #0e1518);
 				margin: 0px;
 				overflow: hidden;
 				font-family:Monospace;
@@ -322,7 +322,7 @@
                                 col *= value;
 
                                 float l = snoise( vec3( pOut.xz * 0.002, uTime * 1.0 ));
-                                gl_FragColor = vec4( col, 0.05 + ( l*l*l * 0.2 ));
+                                gl_FragColor = vec4( col, 0.03 + ( l*l*l * 0.2 ));
                             }
 
                         `,
