@@ -322,7 +322,7 @@
                                 col *= value;
 
                                 float l = snoise( vec3( pOut.xz * 0.002, uTime * 1.0 ));
-                                gl_FragColor = vec4( col, 0.03 + ( l*l*l * 0.2 ));
+                                gl_FragColor = vec4( col, 0.05 * value );
                             }
 
                         `,
@@ -437,19 +437,19 @@
 
                             void main() {
                                 vec3 ap = position;
-                                float value = snoise( vec3( ap.xz * 0.02, uTime ));
-                                ap.y += value * 10.0;
+                                float value = snoise( vec3( ap.xz * 0.01, uTime ));
+                                ap.y += value * 30.0;
                                 vec4 mvPosition = modelViewMatrix * vec4( ap, 1.0 );
                                 pOut = ap;
                                 float p = 0.4 * ( 1600.0 / - mvPosition.z );
                                 vDist = smoothstep( 0.0, 1.0, mvPosition.z * 0.1 );
-                                gl_PointSize = p;//mix( p+3., p , value );
+                                gl_PointSize = p;
                                 gl_Position = projectionMatrix * mvPosition;
                             }
                         `,
                         blending: THREE.AdditiveBlending,
-                        blendSrc: THREE.SrcAlphaFactor,
-                        blendDst: THREE.OneFactor,
+                        // blendSrc: THREE.SrcAlphaFactor,
+                        // blendDst: THREE.OneFactor,
                         depthWrite: false,
                         depthTest: false,
                         transparent : true,
@@ -548,7 +548,7 @@
                 particles.rotation.y += 0.0001
                 particles.rotation.x = Math.sin( theta * 0.0002 ) * 0.04
 
-				camera.position.x += ( mouseX - camera.position.x ) * 0.00004;
+				camera.position.x += ( mouseX - camera.position.x ) * 0.0008;
 				camera.position.y += ( - mouseY - camera.position.y ) * 0.000005;
 
 				camera.lookAt( scene.position );
